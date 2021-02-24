@@ -6,8 +6,7 @@
     let path = value;
     let backTypes = ["back1", "back2", "back3", "back4"]
 
-    const handleClick = () => {
-        showBack = !showBack;
+    const back = () => {
         if(showBack){
             path = backTypes[bt];
         }else{
@@ -15,8 +14,13 @@
         }
     }
 
+    const handleClick = () => {
+        showBack = !showBack;
+        back();
+    }
+
+    back();
+
 </script>
 
-<div on:click={handleClick} class="cursor-pointer">
-    <img class="w-56 h-56 rounded" src="./cards/{path}.svg" alt="">
-</div>
+<img on:click={handleClick} class="w-56 cursor-pointer rounded" src="./cards/{path}.svg" alt="">

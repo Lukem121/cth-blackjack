@@ -1,23 +1,57 @@
 <script>
 	import Tailwindcss from './Tailwindcss.svelte';
+	import Nav from './components/Nav.svelte';
+	import Button from './components/Button.svelte';
 	import Card from './components/Card.svelte';
-
-	let cards = new Array(13)
-	let prefix = "C"
 </script>
 
+<svelte:head>
+	<style>
+		body {
+			@apply bg-gradient-to-r from-green-600 via-green-400 to-green-600;
+		}
+	</style>
+</svelte:head>
+
 <Tailwindcss />
-<main class="flex bg-green-500 h-screen items-center justify-center">
+<div class="flex justify-center my-10">
+	<Nav />
+</div>
+<div class="flex flex-col justify-around space-y-10">
+	<div class="dealer flex justify-center space-x-4">
+		<Card value={"h2"} showBack={true}/>
+		<Card value={"d5"}/>
+	</div>
 
-	<Card value={"c1"}/>
-	<Card value={"h1"} bt={1}/>
-	<Card value={"s1"} bt={2}/>
-	<Card value={"d1"} bt={3}/>
+	<div class="game-controls flex flex-col justify-around items-center">
+		
+		<!-- Dealer total -->
+		<span class="font-bold">Dealer</span>
+		<div class="totals">
+			<span>10</span>
+		</div>
 
-	<!-- {#each cards as card, i}
-		<Card value={prefix + (i+1)} />
-	{/each} -->
-</main>
+		<div class="controls my-6 space-x-4">
+			<Button><i class="fas fa-plus-square"></i> Hit</Button>
+			<Button><i class="fas fa-money-bill-wave"></i> Double</Button>
+			<Button><i class="fas fa-hand-paper"></i> Stand</Button>
+		</div>
 
-<style>
+		<!-- Player total -->
+		<div class="totals">
+			<span>10</span>
+		</div>
+		<span class="font-bold">Player</span>
+	</div>
+
+	<div class="player flex justify-center space-x-4">
+		<Card value={"c10"}/>
+		<Card value={"h7"}/>
+	</div>
+</div>
+
+<style lang="postcss">
+	.totals {
+		@apply p-4 leading-none text-center shadow-inner rounded mt-1 font-bold text-xl flex flex-col justify-center items-center bg-green-500 ;
+	}
 </style>
